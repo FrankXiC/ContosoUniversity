@@ -25,5 +25,12 @@ namespace ContosoUniversity
             List<Students> studentList = Tool.getHelper().DeserializeJsonToList<Students>(response.Content);
             ViewData["studentList"] = studentList;
         }
+
+        [HttpPost]
+        public  ActionResult DeleteStu(string Fid)
+        {
+            return null;
+        }
+
     }
 }

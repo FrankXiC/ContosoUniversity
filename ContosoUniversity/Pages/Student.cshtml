@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Student";
 }
+<script src="js/DeleteStudent.js"></script>
 <div>
     <table>
         <tr>
@@ -20,6 +21,9 @@
                 </td>
                 <td>
                     @students.LastName
+                </td>
+                <td>
+                    <button type="button" id="delete" onclick="deletethis(@students.Id)">删除</button>
                 </td>
             </tr>
         }
