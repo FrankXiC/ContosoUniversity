@@ -1,0 +1,45 @@
+﻿@page
+@using Models
+@model StudentRegisterModel
+@{
+    Students stu=new Students();
+}
+<form id="RegisterForm" method="post" asp-page-handler="First">
+    <div>
+        <label>姓氏</label>
+        <input type="text" name="LastName"/>
+    </div>
+    <div>
+        <label>名字</label>
+        <input type="text" name="FirstName" />
+    </div>
+    <div>
+        @*<input type="button" id="Submit" onclick="SubmitData()"/>*@
+        <button type="submit">submit</button>
+    </div>
+</form>
+
+@*<table>
+    <tr>
+        <td>Id</td>
+        <td>姓</td>
+        <td>名</td>
+    </tr>
+    @foreach (Students stuNew in ViewData["studentNew"] as List<Students>)
+    {
+        <tr>
+            <td>
+                @stuNew.Id
+            </td>
+            <td>
+                @stuNew.FirstMidName
+            </td>
+            <td>
+                @stuNew.LastName
+            </td>
+        </tr>
+    }
+</table>*@
+
+
+
