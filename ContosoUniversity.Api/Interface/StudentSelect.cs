@@ -17,10 +17,17 @@ namespace ContosoUniversity.Api.Interface {
             conn = connection;
         }
 
-        public List<Students> SelectAllStudent()
+        public List<Students> SelectAllStudent(int id)
         {
             TestContext testContext = new TestContext(conn);
-            var studentList = (from stu in testContext.Students select stu).ToList();
+            var studentList=new List<Students>();
+            if (id == 0) {
+                studentList = (from stu in testContext.Students select stu).ToList();
+            }
+            else
+            {
+                studentList = (from stu in testContext.Students where stu.Id == id select stu).ToList();
+            }
             return studentList;
         }
     }

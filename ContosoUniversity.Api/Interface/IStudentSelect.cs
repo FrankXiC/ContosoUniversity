@@ -5,6 +5,6 @@ namespace ContosoUniversity.Api.Interface
 {
     public interface IStudentSelect
     {
-        List<Students> SelectAllStudent();
+        List<Students> SelectAllStudent(int id);
     }
 }
