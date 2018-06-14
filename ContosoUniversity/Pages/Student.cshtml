@@ -1,0 +1,27 @@
+﻿@page
+@model StudentModel
+@{
+    ViewData["Title"] = "Student";
+}
+<div>
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>姓</td>
+            <td>名</td>
+        </tr>
+        @foreach (var students in ViewData["studentlist"] as List<ContosoUniversity.Models.Students>) {
+            <tr>
+                <td>
+                    @students.Id
+                </td>
+                <td>
+                    @students.FirstMidName
+                </td>
+                <td>
+                    @students.LastName
+                </td>
+            </tr>
+        }
+    </table>
+</div>

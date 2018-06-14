@@ -1,23 +1,23 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ContosoUniversity.Models;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using RestSharp;
 
-namespace ContosoUniversity.Pages
+namespace ContosoUniversity
 {
-    public class IndexModel : PageModel
+    public class StudentModel : PageModel
     {
         public ConnnectApi ConnApi;
-        public IndexModel(IOptions<ConnnectApi> option) {
+        public StudentModel(IOptions<ConnnectApi> option) {
             ConnApi = option.Value;
         }
-        public void OnGet() {
+        public void OnGet()
+        {
             string url = string.Format("{0}/StudentCRUD", ConnApi.WebApi);
             var client = new RestClient(url);
             var request = new RestRequest(Method.GET);
