@@ -25,7 +25,7 @@ namespace ContosoUniversity.Api.Controllers
         public ActionResult<List<Students>> Get()
         {
             IStudentSelect studentSelect = new StudentSelect(conn);
-            var studentlist = studentSelect.SelectAllStudent();
+            var studentlist = studentSelect.SelectAllStudent(0);
             return studentlist;
         }
 
@@ -33,9 +33,8 @@ namespace ContosoUniversity.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<Students> Get(int id)
         {
-            TestContext testContext = new TestContext(conn);
-            var student = (from stu in testContext.Students where stu.Id==id select stu).ToList().FirstOrDefault();
-            testContext.Dispose();
+            IStudentSelect studentSelect = new StudentSelect(conn);
+            var student = studentSelect.SelectAllStudent(id).FirstOrDefault();
             return student;
         }
 
@@ -50,29 +49,19 @@ namespace ContosoUniversity.Api.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Students student)
+        public Students Put(int id, [FromBody] Students student)
         {
-            TestContext testContext = new TestContext(conn);
-            var studentById = (from stu in testContext.Students where stu.Id == id select stu).FirstOrDefault();
-            if (!studentById.Equals(student))
-            {
-                studentById.EnrollmentDate = student.EnrollmentDate;
-                studentById.FirstMidName = student.FirstMidName;
-                studentById.LastName = student.LastName;
-                testContext.SaveChanges();
-                testContext.Dispose();
-            }
+            IStudentModefy studentModefy=new StudentModefy(conn);
+            var studentNew= studentModefy.Modified(id, student);
+            return studentNew;
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            TestContext testContext = new TestContext(conn);
-            var student = (from stu in testContext.Students where stu.Id == id select stu).FirstOrDefault();
-            testContext.Remove(student);
-            testContext.SaveChanges();
-            testContext.Dispose();
+            IStudentDelete studentDelete=new StudentDelete(conn);
+            studentDelete.Delete(id);
         }
     }
 }
